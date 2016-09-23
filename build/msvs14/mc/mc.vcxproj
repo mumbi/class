@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\mc\acceptor.h" />
+    <ClInclude Include="..\..\..\include\mc\any_thread_performer.h" />
+    <ClInclude Include="..\..\..\include\mc\binary_reader.h" />
+    <ClInclude Include="..\..\..\include\mc\binary_writer.h" />
+    <ClInclude Include="..\..\..\include\mc\buffer.h" />
+    <ClInclude Include="..\..\..\include\mc\specific_thread_performer.h" />
+    <ClInclude Include="..\..\..\include\mc\specific_thread_timer_task.h" />
+    <ClInclude Include="..\..\..\include\mc\connector.h" />
+    <ClInclude Include="..\..\..\include\mc\dependent_task.h" />
+    <ClInclude Include="..\..\..\include\mc\event_signal.h" />
+    <ClInclude Include="..\..\..\include\mc\memory_stream.h" />
+    <ClInclude Include="..\..\..\include\mc\network_service.h" />
+    <ClInclude Include="..\..\..\include\mc\optional.h" />
+    <ClInclude Include="..\..\..\include\mc\performable_interface.h" />
+    <ClInclude Include="..\..\..\include\mc\performer.h" />
+    <ClInclude Include="..\..\..\include\mc\range.h" />
+    <ClInclude Include="..\..\..\include\mc\result_task.h" />
+    <ClInclude Include="..\..\..\include\mc\session.h" />
+    <ClInclude Include="..\..\..\include\mc\stream.h" />
+    <ClInclude Include="..\..\..\include\mc\string_helper.h" />
+    <ClInclude Include="..\..\..\include\mc\task.h" />
+    <ClInclude Include="..\..\..\include\mc\timer_task.h" />
+    <ClInclude Include="..\..\..\include\mc\update_task.h" />
+    <ClInclude Include="..\..\..\src\asio.h" />
+    <ClInclude Include="..\..\..\src\network_service_impl.h" />
+    <ClInclude Include="..\..\..\src\performable_queue.h" />
+    <ClInclude Include="..\..\..\src\performable_service.h" />
+    <ClInclude Include="..\..\..\src\queue_service.h" />
+    <ClInclude Include="..\..\..\src\session_impl.h" />
+    <ClInclude Include="..\..\..\src\thread_pool.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\acceptor.cpp" />
+    <ClCompile Include="..\..\..\src\any_thread_performer.cpp" />
+    <ClCompile Include="..\..\..\src\binary_reader.cpp" />
+    <ClCompile Include="..\..\..\src\binary_writer.cpp" />
+    <ClCompile Include="..\..\..\src\buffer.cpp" />
+    <ClCompile Include="..\..\..\src\specific_thread_performer.cpp" />
+    <ClCompile Include="..\..\..\src\specific_thread_timer_task.cpp" />
+    <ClCompile Include="..\..\..\src\connector.cpp" />
+    <ClCompile Include="..\..\..\src\memory_stream.cpp" />
+    <ClCompile Include="..\..\..\src\network_service.cpp" />
+    <ClCompile Include="..\..\..\src\performable_queue.cpp" />
+    <ClCompile Include="..\..\..\src\queue_service.cpp" />
+    <ClCompile Include="..\..\..\src\session.cpp" />
+    <ClCompile Include="..\..\..\src\stream.cpp" />
+    <ClCompile Include="..\..\..\src\string_helper.cpp" />
+    <ClCompile Include="..\..\..\src\timer_task.cpp" />
+    <ClCompile Include="..\..\..\src\update_task.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{601EAB8E-9FC1-4C61-BD3C-35680F92A251}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>mumbi</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>mc</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mc;$(IncludePath)</IncludePath>
+    <OutDir>bin\$(PlatformTarget)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mc;$(IncludePath)</IncludePath>
+    <OutDir>bin\$(PlatformTarget)\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
