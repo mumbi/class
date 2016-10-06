@@ -9,150 +9,195 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="include\mumbi">
+      <UniqueIdentifier>{b561db9e-0144-4188-82bb-efa42ee9c940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\net">
+      <UniqueIdentifier>{335d90d6-805e-4173-8aa0-a7f4144f29a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\threading">
+      <UniqueIdentifier>{a92f2d8b-2170-46ed-999f-b4b03219ab8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\threading\task">
+      <UniqueIdentifier>{6121c47f-8bd0-495c-a964-91ac7303d4b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\functional">
+      <UniqueIdentifier>{e5020137-8566-49a2-9d0e-c1617d324c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\std">
+      <UniqueIdentifier>{631790c4-b717-4ca3-a906-db91d97d93f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\std\experimental">
+      <UniqueIdentifier>{5d934863-0036-471b-926d-7bb5bbd75167}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\util">
+      <UniqueIdentifier>{5dec665d-d031-4491-8e09-381592557e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi">
+      <UniqueIdentifier>{27f8a0a7-03ef-4516-90fe-a7ed53109a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\net">
+      <UniqueIdentifier>{cde768dc-73c3-4219-ab63-cb80bb0553ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\threading">
+      <UniqueIdentifier>{65ee10b9-7ba3-4757-a4ab-4ebed74f6e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\io">
+      <UniqueIdentifier>{46bfecae-1c58-491a-aeff-5f8553abd4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\threading\task">
+      <UniqueIdentifier>{9b8b798c-e07b-4a92-8809-73e0fb297999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\util">
+      <UniqueIdentifier>{370582a2-aea3-4095-81e0-26dfcbe501bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\io">
+      <UniqueIdentifier>{0bfdda93-08e3-4a4b-b203-c614c720f06a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\asio.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\net\acceptor.h">
+      <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\network_service_impl.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\any_thread_performer.h">
+      <Filter>include\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\performable_queue.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\net\connector.h">
+      <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\performable_service.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\dependent_task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\queue_service.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\functional\event_signal.h">
+      <Filter>include\mumbi\functional</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\session_impl.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\net\network_service.h">
+      <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\thread_pool.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\std\experimental\optional.h">
+      <Filter>include\std\experimental</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\acceptor.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\performable_interface.h">
+      <Filter>include\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\binary_reader.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\performer.h">
+      <Filter>include\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\binary_writer.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\util\range.h">
+      <Filter>include\mumbi\util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\buffer.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\result_task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\connector.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\net\session.h">
+      <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\dependent_task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\specific_thread_performer.h">
+      <Filter>include\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\event_signal.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\specific_thread_timer_task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\memory_stream.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\util\string_helper.h">
+      <Filter>include\mumbi\util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\network_service.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\optional.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\timer_task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\performer.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\threading\task\update_task.h">
+      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\range.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\asio.h">
+      <Filter>src\mumbi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\result_task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\net\network_service_impl.h">
+      <Filter>src\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\session.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\threading\performable_queue.h">
+      <Filter>src\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\stream.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\threading\performable_service.h">
+      <Filter>src\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\string_helper.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\threading\queue_service.h">
+      <Filter>src\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\net\session_impl.h">
+      <Filter>src\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\timer_task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\src\mumbi\threading\thread_pool.h">
+      <Filter>src\mumbi\threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\update_task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\io\binary_reader.h">
+      <Filter>include\mumbi\io</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\performable_interface.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\io\binary_writer.h">
+      <Filter>include\mumbi\io</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\any_thread_performer.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\io\buffer.h">
+      <Filter>include\mumbi\io</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\specific_thread_performer.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\io\memory_stream.h">
+      <Filter>include\mumbi\io</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mc\specific_thread_timer_task.h">
-      <Filter>include</Filter>
+    <ClInclude Include="..\..\..\include\mumbi\io\stream.h">
+      <Filter>include\mumbi\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\acceptor.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\net\acceptor.cpp">
+      <Filter>src\mumbi\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\binary_reader.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\any_thread_performer.cpp">
+      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\binary_writer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\io\binary_reader.cpp">
+      <Filter>src\mumbi\io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\buffer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\io\binary_writer.cpp">
+      <Filter>src\mumbi\io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\connector.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\io\buffer.cpp">
+      <Filter>src\mumbi\io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\memory_stream.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\net\connector.cpp">
+      <Filter>src\mumbi\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\network_service.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\io\memory_stream.cpp">
+      <Filter>src\mumbi\io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\performable_queue.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\net\network_service.cpp">
+      <Filter>src\mumbi\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\queue_service.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\performable_queue.cpp">
+      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\session.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\queue_service.cpp">
+      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\timer_task.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\net\session.cpp">
+      <Filter>src\mumbi\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\update_task.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\specific_thread_performer.cpp">
+      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\string_helper.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\task\specific_thread_timer_task.cpp">
+      <Filter>src\mumbi\threading\task</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stream.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\io\stream.cpp">
+      <Filter>src\mumbi\io</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\any_thread_performer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\util\string_helper.cpp">
+      <Filter>src\mumbi\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\specific_thread_performer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\task\timer_task.cpp">
+      <Filter>src\mumbi\threading\task</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\specific_thread_timer_task.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\task\update_task.cpp">
+      <Filter>src\mumbi\threading\task</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
