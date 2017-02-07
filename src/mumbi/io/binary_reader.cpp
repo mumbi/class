@@ -4,12 +4,15 @@
 #include <exception>
 
 #include "stream.h"
+#include "exception.h"
 
 namespace mumbi {
 namespace io
 {
 	using std::numeric_limits;
 	using std::exception;
+
+	using mumbi::exception::format_exception;
 
 	binary_reader::binary_reader(stream& stream)
 		: _stream(stream)
@@ -94,13 +97,13 @@ namespace io
 		while (35 != bit_index)
 		{
 			uint8_t current_byte = read_uint8();
-			return_value |= ((int)current_byte & (int)numeric_limits<int8_t>::max()) << bit_index;
+			return_value |= (static_cast<int>(current_byte) & static_cast<int>(numeric_limits<int8_t>::max())) << bit_index;
 			bit_index += 7;
 
-			if (((int)current_byte & 128) == 0)
+			if ((static_cast<int>(current_byte) & 128) == 0)
 				return return_value;			
 		}
-
-		throw exception("format_bad7bitint32");
+		
+		throw format_exception("format_bad7bitint32");
 	}	
 }}

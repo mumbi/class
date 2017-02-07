@@ -16,56 +16,61 @@ namespace net
 	class connector::impl		
 	{
 	public:
+		error_occurred_signal_type	error_occurred;
+		connecting_signal_type		connecting;
+		connected_signal_type		connected;
+
+	public:
 		impl(network_service& network_service)			
 			: _network_service(network_service)
 			, _resolver(get_io_service())
 		{
-		}
+		}						
 		
-		static void connect(connector_ptr connector, session_ptr session, tcp::resolver::iterator endpoint_iterator)
+		void connect(tcp::resolver::iterator endpoint_iterator)
 		{
 			tcp::endpoint endpoint = *endpoint_iterator;
 			
 			++endpoint_iterator;
-
-			session->get_impl()._socket->async_connect(endpoint, bind(&impl::on_connected, connector, std::placeholders::_1, endpoint_iterator, session));
 			
-			connector->connecting.emit(endpoint.address().to_string());
-		}
-
-		static void on_resolved(connector_ptr connector, const error_code& error, tcp::resolver::iterator endpoint_iterator)
+			session session(_network_service);			
+			session.get_impl()->_socket->async_connect(endpoint, bind(&impl::on_connected, this, std::placeholders::_1, endpoint_iterator, session));			
+			
+			connecting.emit(endpoint.address().to_string());
+		}		
+		
+		void on_resolved(const error_code& error, tcp::resolver::iterator endpoint_iterator)
 		{
 			if (!error)
 			{
-				connector::impl& impl = *connector->_pimpl;
-				session_ptr session = session::create(impl._network_service);
-				impl.connect(connector, session, endpoint_iterator);
+				connect(endpoint_iterator);
 			}
 			else
 			{
-				connector->error_occurred.emit(error);
+				error_occurred.emit(error);
 			}
-		}
-
-		static void on_connected(connector_ptr connector, const error_code& error, tcp::resolver::iterator next_endpoint_iterator, session_ptr session)
+		}		
+		
+		void on_connected(const error_code& error, tcp::resolver::iterator next_endpoint_iterator, session& session)		
 		{
 			if (!error)
 			{
-				session->get_impl()._is_connected = true;
-
-				connector->connected.emit(session);
+				session.get_impl()->_is_connected = true;
+				
+				connected.emit(session);
 
 				// session start.				
-				session->get_impl().receive(session);
+				session.get_impl()->receive();				
 			}
 			else if (tcp::resolver::iterator() != next_endpoint_iterator)
 			{
-				session->get_impl().close();
-				connect(connector, session, next_endpoint_iterator);
+				session.get_impl()->close();
+				
+				connect(next_endpoint_iterator);
 			}
 			else
 			{
-				connector->error_occurred.emit(error);
+				error_occurred.emit(error);
 			}
 		}
 
@@ -76,20 +81,14 @@ namespace net
 		
 		network_service&	_network_service;
 		tcp::resolver		_resolver;
-	};
+	};	
 	
-	connector_ptr connector::create(network_service& network_service)
-	{
-		return connector_ptr(new connector(network_service));
-	}
-
-	connector::~connector()
-	{	
-	}	
-
 	connector::connector(network_service& network_service)
-		: _pimpl(new impl( network_service))
+		: _pimpl(new impl( network_service))		
 	{
+		error_occurred.connect(&_pimpl->error_occurred);
+		connecting.connect(&_pimpl->connecting);
+		connected.connect(&_pimpl->connected);
 	}
 
 	void connector::connect(const string& host, uint16_t port)
@@ -97,8 +96,7 @@ namespace net
 		stringstream ss;
 		ss << port;
 
-		tcp::resolver::query query(host, ss.str());
-
-		_pimpl->_resolver.async_resolve(query, bind(&connector::impl::on_resolved, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+		tcp::resolver::query query(host, ss.str());				
+		_pimpl->_resolver.async_resolve(query, bind(&connector::impl::on_resolved, _pimpl.get(), std::placeholders::_1, std::placeholders::_2));
 	}	
 }}

@@ -4,12 +4,14 @@
 #define MUMBI__THREADING__QUEUE_SERVICE__H
 
 #include <memory>
+#include <mutex>
 #include "../asio.h"
 
 namespace mumbi {
 namespace threading
 {
-	using std::unique_ptr;
+	using std::unique_ptr;	
+	using std::mutex;
 	using asio::io_service;
 
 	class queue_service
@@ -17,9 +19,11 @@ namespace threading
 	public:
 		virtual ~queue_service();
 		queue_service();
+		queue_service(size_t concurrency_hint);
 
 		bool stopped() const;
-		void start();
+
+		void restart();
 		void stop();
 
 		void run();
@@ -29,6 +33,8 @@ namespace threading
 	private:
 		io_service						_io_service;
 		unique_ptr<io_service::work>	_work;
+
+		mutex							_lock;
 	};
 }}
 

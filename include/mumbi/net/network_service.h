@@ -17,8 +17,13 @@ namespace net
 		network_service();
 		network_service(size_t thread_count);
 
-		void start();
-		void stop();	
+		bool stopped() const;
+
+		void restart();		
+		void stop();
+		
+		void start_running();
+		void end_running();
 
 	private:
 		class impl;

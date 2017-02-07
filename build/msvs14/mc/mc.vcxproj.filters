@@ -18,9 +18,6 @@
     <Filter Include="include\mumbi\threading">
       <UniqueIdentifier>{a92f2d8b-2170-46ed-999f-b4b03219ab8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\mumbi\threading\task">
-      <UniqueIdentifier>{6121c47f-8bd0-495c-a964-91ac7303d4b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\mumbi\functional">
       <UniqueIdentifier>{e5020137-8566-49a2-9d0e-c1617d324c4f}</UniqueIdentifier>
     </Filter>
@@ -45,28 +42,37 @@
     <Filter Include="src\mumbi\io">
       <UniqueIdentifier>{46bfecae-1c58-491a-aeff-5f8553abd4e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\mumbi\threading\task">
-      <UniqueIdentifier>{9b8b798c-e07b-4a92-8809-73e0fb297999}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\mumbi\util">
       <UniqueIdentifier>{370582a2-aea3-4095-81e0-26dfcbe501bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\mumbi\io">
       <UniqueIdentifier>{0bfdda93-08e3-4a4b-b203-c614c720f06a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\mumbi\exception">
+      <UniqueIdentifier>{851defd5-2ba1-4f3c-863a-b097bffe797e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\exception">
+      <UniqueIdentifier>{4fd91625-c0fb-489e-a4b9-4daad96a1c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\threading\tasking">
+      <UniqueIdentifier>{9b8b798c-e07b-4a92-8809-73e0fb297999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\threading\tasking">
+      <UniqueIdentifier>{6121c47f-8bd0-495c-a964-91ac7303d4b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\mumbi\time">
+      <UniqueIdentifier>{51db9f24-e4b5-4594-9dd2-d55bb09c5c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mumbi\time">
+      <UniqueIdentifier>{a8fac564-5523-4a38-b72e-31251c5ed8f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\mumbi\net\acceptor.h">
       <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\any_thread_performer.h">
-      <Filter>include\mumbi\threading</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\net\connector.h">
       <Filter>include\mumbi\net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\dependent_task.h">
-      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\functional\event_signal.h">
       <Filter>include\mumbi\functional</Filter>
@@ -77,38 +83,17 @@
     <ClInclude Include="..\..\..\include\mumbi\std\experimental\optional.h">
       <Filter>include\std\experimental</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\performable_interface.h">
-      <Filter>include\mumbi\threading</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\threading\performer.h">
       <Filter>include\mumbi\threading</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\util\range.h">
       <Filter>include\mumbi\util</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\result_task.h">
-      <Filter>include\mumbi\threading\task</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\net\session.h">
       <Filter>include\mumbi\net</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\specific_thread_performer.h">
-      <Filter>include\mumbi\threading</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\specific_thread_timer_task.h">
-      <Filter>include\mumbi\threading\task</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\util\string_helper.h">
       <Filter>include\mumbi\util</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\task.h">
-      <Filter>include\mumbi\threading\task</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\timer_task.h">
-      <Filter>include\mumbi\threading\task</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\update_task.h">
-      <Filter>include\mumbi\threading\task</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\mumbi\asio.h">
       <Filter>src\mumbi</Filter>
@@ -146,13 +131,55 @@
     <ClInclude Include="..\..\..\include\mumbi\io\stream.h">
       <Filter>include\mumbi\io</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\dedicated_performer.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\common_performer.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\performable.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\exception\exception.h">
+      <Filter>include\mumbi\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\performer_bundle.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\util\scoped.h">
+      <Filter>include\mumbi\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\util\traits.h">
+      <Filter>include\mumbi\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker_holder.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\util\tuple.h">
+      <Filter>include\mumbi\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\promise.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\std\experimental\any.h">
+      <Filter>include\std\experimental</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h">
+      <Filter>include\mumbi\threading\tasking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\time\timer.h">
+      <Filter>include\mumbi\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h">
+      <Filter>include\mumbi\threading\tasking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\mumbi\net\acceptor.cpp">
       <Filter>src\mumbi\net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\threading\any_thread_performer.cpp">
-      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\mumbi\io\binary_reader.cpp">
       <Filter>src\mumbi\io</Filter>
@@ -181,23 +208,32 @@
     <ClCompile Include="..\..\..\src\mumbi\net\session.cpp">
       <Filter>src\mumbi\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\threading\specific_thread_performer.cpp">
-      <Filter>src\mumbi\threading</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\specific_thread_timer_task.cpp">
-      <Filter>src\mumbi\threading\task</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\mumbi\io\stream.cpp">
       <Filter>src\mumbi\io</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\mumbi\util\string_helper.cpp">
       <Filter>src\mumbi\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\timer_task.cpp">
-      <Filter>src\mumbi\threading\task</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\common_performer.cpp">
+      <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\update_task.cpp">
-      <Filter>src\mumbi\threading\task</Filter>
+    <ClCompile Include="..\..\..\src\mumbi\threading\dedicated_performer.cpp">
+      <Filter>src\mumbi\threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\mumbi\threading\performable.cpp">
+      <Filter>src\mumbi\threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\mumbi\exception\exception.cpp">
+      <Filter>src\mumbi\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\mumbi\threading\performer_bundle.cpp">
+      <Filter>src\mumbi\threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\mumbi\threading\invoker_holder.cpp">
+      <Filter>src\mumbi\threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\mumbi\time\timer.cpp">
+      <Filter>src\mumbi\time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

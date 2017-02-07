@@ -292,7 +292,6 @@ namespace functional
 			/// Signal constructor, supports a default callback as argument.
 			protected_signal(const callback_type& callback = callback_type()) : proto_signal(callback) {}
 		};
-
 	} // lib
 
 	// namespace signal
@@ -320,7 +319,59 @@ namespace functional
 
 		/// Signal constructor, supports a default callback as argument.
 		signal(const callback_type& callback = callback_type()) : proto_signal(callback) {}
-	};	
+	};
+	
+	template <class Friend, class Signal>
+	class signal_connector
+	{
+	private:
+		using signal_type	= Signal;
+		using callback_type = typename signal_type::callback_type;
+
+		friend typename Friend;
+
+	public:
+		signal_connector()
+			: _signal(nullptr)
+		{
+		}
+
+		signal_connector(signal_type* signal)
+			: _signal(signal)
+		{
+		}
+
+		size_t operator+=(const callback_type& listener)
+		{
+			if (nullptr == _signal)
+				return 0;
+
+			return (*_signal) += (listener);			
+		}
+
+		bool operator-=(size_t connection)
+		{
+			if (nullptr == _signal)
+				return false;
+
+			return (*_signal) -= (connection);
+		}
+
+		void clear()
+		{
+			if (nullptr != _signal)
+				_signal->clear();
+		}
+
+	private:
+		void connect(signal_type* signal)
+		{
+			_signal = signal;
+		}
+
+	private:
+		signal_type*	_signal;
+	};
 
 	/// event_signal is not public emission.
 	template<class Friend, typename Signature, class Collector = lib::collector_default<typename function<Signature>::result_type>>

@@ -11,29 +11,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\mumbi\exception\exception.h" />
     <ClInclude Include="..\..\..\include\mumbi\net\acceptor.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\any_thread_performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\std\experimental\any.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker_holder.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\performer_bundle.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\common_performer.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\binary_reader.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\binary_writer.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\buffer.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\specific_thread_performer.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\specific_thread_timer_task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\dedicated_performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker.h" />
     <ClInclude Include="..\..\..\include\mumbi\net\connector.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\dependent_task.h" />
     <ClInclude Include="..\..\..\include\mumbi\functional\event_signal.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\memory_stream.h" />
     <ClInclude Include="..\..\..\include\mumbi\net\network_service.h" />
     <ClInclude Include="..\..\..\include\mumbi\std\experimental\optional.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\performable_interface.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\performable.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\promise.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\time\timer.h" />
     <ClInclude Include="..\..\..\include\mumbi\util\range.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\result_task.h" />
     <ClInclude Include="..\..\..\include\mumbi\net\session.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\stream.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\scoped.h" />
     <ClInclude Include="..\..\..\include\mumbi\util\string_helper.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\task.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\timer_task.h" />
-    <ClInclude Include="..\..\..\include\mumbi\threading\task\update_task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\traits.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\tuple.h" />
     <ClInclude Include="..\..\..\src\mumbi\asio.h" />
     <ClInclude Include="..\..\..\src\mumbi\net\network_service_impl.h" />
     <ClInclude Include="..\..\..\src\mumbi\threading\performable_queue.h" />
@@ -43,13 +49,16 @@
     <ClInclude Include="..\..\..\src\mumbi\threading\thread_pool.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\mumbi\exception\exception.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\net\acceptor.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\threading\any_thread_performer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\invoker_holder.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\performer_bundle.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\common_performer.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\binary_reader.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\binary_writer.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\buffer.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\threading\specific_thread_performer.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\specific_thread_timer_task.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\dedicated_performer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\performable.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\net\connector.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\memory_stream.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\net\network_service.cpp" />
@@ -57,9 +66,8 @@
     <ClCompile Include="..\..\..\src\mumbi\threading\queue_service.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\net\session.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\stream.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\time\timer.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\util\string_helper.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\timer_task.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\threading\task\update_task.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{601EAB8E-9FC1-4C61-BD3C-35680F92A251}</ProjectGuid>
@@ -95,11 +103,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\task;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;$(IncludePath)</IncludePath>
     <OutDir>bin\$(PlatformTarget)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\task;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;..\..\..\include\mumbi\time;$(IncludePath)</IncludePath>
     <OutDir>bin\$(PlatformTarget)\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
@@ -113,6 +121,8 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -133,6 +143,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

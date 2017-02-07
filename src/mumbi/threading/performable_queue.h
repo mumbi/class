@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef PERFORMABLE_QUEUE__H
-#define PERFORMABLE_QUEUE__H
+#ifndef MUMBI__THREADING__PERFORMABLE_QUEUE__H
+#define MUMBI__THREADING__PERFORMABLE_QUEUE__H
 
 #include <memory>
 #include <atomic>
@@ -15,8 +15,7 @@ namespace threading
 	using std::atomic;
 	using mumbi::functional::event_signal;
 
-	class performable_interface;
-	using performable_interface_ptr = std::shared_ptr<performable_interface>;
+	class performable;	
 
 	class performable_queue final
 		: public queue_service
@@ -28,12 +27,12 @@ namespace threading
 		performable_queue();
 
 		size_t post_count() const;
-		size_t working_count() const;
-	
-		void post(performable_interface_ptr performable);
+		size_t working_count() const;	
+		
+		void post(performable& performable);
 
-	private:
-		void on_posted(performable_interface_ptr performable);
+	private:		
+		void on_dispatched(performable& performable);
 
 	private:
 		atomic<size_t>	_post_count;
@@ -41,4 +40,4 @@ namespace threading
 	};
 }}
 
-#endif	// PERFORMABLE_QUEUE__H
+#endif	// MUMBI__THREADING__PERFORMABLE_QUEUE__H

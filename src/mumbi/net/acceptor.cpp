@@ -6,65 +6,65 @@
 #include "session.h"
 #include "session_impl.h"
 
+#include "exception.h"
+
 namespace mumbi {
 namespace net
-{
-	using std::exception;
-	using std::make_shared;
+{	
+	using std::make_shared;	
+	using mumbi::exception::network_exception;
 
 	class acceptor::impl		
 	{
+	public:
+		error_occurred_signal_type	error_occurred;
+		accepted_signal_type		accepted;
+
 	public:
 		impl(network_service& network_service, uint16_t port)			
 			: _network_service(network_service)
 			, _bind_endpoint(tcp::v6(), port)
 		{
-		}
-
-		bool accept(acceptor_ptr acceptor)
+		}		
+		
+		void accept()
 		{
 			if (!_acceptor)
 			{
 				_acceptor = make_unique<tcp::acceptor>(get_io_service());
-				_acceptor->open(_bind_endpoint.protocol());
+				_acceptor->open(_bind_endpoint.protocol());				
 
 				asio::error_code error;
 				_acceptor->bind(_bind_endpoint, error);
 				if (error)
-				{
-					//cerr <<  << endl;
-					throw exception(error.message().c_str());
-					return false;
-				}
+					throw network_exception(error.value(), error.message().c_str());
 
 				_acceptor->listen();
-			}
+			}			
 			
-			session_ptr accept_session = session::create(_network_service);
+			session accept_session(_network_service);			
 			auto accept_endpoint = make_shared<tcp::endpoint>();
-
-			_acceptor->async_accept(*accept_session->get_impl()._socket, *accept_endpoint, std::bind(&impl::on_accepted, acceptor, std::placeholders::_1, accept_session));
-
-			return true;
-		}
-
-		static void on_accepted(acceptor_ptr acceptor, const error_code& error, session_ptr session)
-		{
+			
+			_acceptor->async_accept(*accept_session.get_impl()->_socket, *accept_endpoint, std::bind(&impl::on_accepted, this, std::placeholders::_1, accept_session, accept_endpoint));			
+		}		
+		
+		void on_accepted(const error_code& error, session& session, shared_ptr<tcp::endpoint> endpoint)		
+		{			
 			if (!error)
 			{
-				session->get_impl()._is_connected = true;
+				session.get_impl()->_is_connected = true;				
+				
+				accepted.emit(session, endpoint->address().to_string());				
 
-				acceptor->accepted.emit(session);
+				// session start.								
+				session.get_impl()->receive();				
 
-				// session start.				
-				session->get_impl().receive(session);
-
-				// post accept again.
-				acceptor->accept();
+				// post accept again.				
+				accept();
 			}
 			else
-			{
-				acceptor->error_occurred.emit(error);
+			{				
+				error_occurred.emit(error);
 			}
 		}
 
@@ -76,29 +76,23 @@ namespace net
 		network_service&			_network_service;
 		unique_ptr<tcp::acceptor>	_acceptor;
 		tcp::endpoint				_bind_endpoint;
-	};
-
-	acceptor_ptr acceptor::create(network_service& network_service, uint16_t port)
-	{
-		return acceptor_ptr(new acceptor(network_service, port));
-	}
-
-	acceptor::~acceptor()
-	{
-	}	
+	};	
 
 	acceptor::acceptor(network_service& network_service, uint16_t port)
-		: _pimpl(new impl(network_service, port))
+		: _pimpl(make_shared<impl>(network_service, port))
 	{
+		error_occurred.connect(&_pimpl->error_occurred);
+		accepted.connect(&_pimpl->accepted);		
 	}
 
-	bool acceptor::accept()
-	{
-		return _pimpl->accept(shared_from_this());
+	void acceptor::accept()
+	{	
+		_pimpl->accept();
 	}
 
 	void acceptor::close()
 	{
-		_pimpl->_acceptor = nullptr;
-	}	
+		_pimpl->_acceptor->close();
+		_pimpl->_acceptor = nullptr;		
+	}
 }}

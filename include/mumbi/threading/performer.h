@@ -8,15 +8,14 @@
 namespace mumbi {
 namespace threading
 {
-	class performable_interface;
-	using performable_interface_ptr = std::shared_ptr<performable_interface>;
+	class performable;	
 
 	class performer
 	{
 	public:
-		virtual ~performer() = 0 {};
-	
-		virtual bool post(performable_interface_ptr performable) = 0;
+		virtual ~performer() = 0 {};	
+		
+		virtual void post(performable& performable) = 0;
 	};
 }}
 

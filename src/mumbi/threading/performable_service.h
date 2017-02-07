@@ -5,6 +5,7 @@
 
 #include <chrono>
 #include <mutex>
+#include <thread>
 
 #include "performable_queue.h"
 #include "thread_pool.h"
@@ -17,7 +18,10 @@ namespace threading
 	using std::mutex;
 	using std::bind;
 	using std::lock_guard;
+	using std::this_thread::sleep_for;
+
 	using std::chrono::high_resolution_clock;
+	using std::chrono::microseconds;
 
 	class performable_service
 	{
@@ -31,36 +35,34 @@ namespace threading
 			_queue.post_finished.clear();
 
 			stop();
+			end_running();
 		}
 
 		performable_service()
-			: _thread_pool(bind(&performable_queue::run, &_queue))
+			: _thread_pool(bind(&performable_service::run, this))
+			, _running(false)
 		{
 			set_event_handlers();
-
-			start();
 		}
 
 		performable_service(int thread_count)
-			: _thread_pool(bind(&performable_queue::run, &_queue), thread_count)
+			: _thread_pool(bind(&performable_service::run, this), thread_count)
+			, _running(false)
 		{
 			set_event_handlers();
-
-			start();
 		}
 
 		bool stopped() const
 		{
 			return _queue.stopped();
 		}
-
-		void start()
+		
+		void restart()
 		{
 			if (!_queue.stopped())
 				return;
 
-			_queue.start();
-			_thread_pool.start();
+			_queue.restart();
 		}
 
 		void stop()
@@ -69,10 +71,31 @@ namespace threading
 				return;
 
 			_queue.stop();
-			_thread_pool.stop();
-		}		
+		}
 
-		void post(performable_interface_ptr performable)
+		void start_running()
+		{
+			_running = true;
+			_thread_pool.start();			
+		}
+
+		void end_running()
+		{
+			_running = false;
+			_thread_pool.join();
+		}
+
+		void run()
+		{
+			while (_running)
+			{
+				_queue.run();
+
+				sleep_for(microseconds(1));
+			}
+		}
+		
+		void post(performable& performable)
 		{
 			_queue.post(performable);
 		}
@@ -90,6 +113,11 @@ namespace threading
 		size_t working_count() const
 		{
 			return _queue.working_count();
+		}
+
+		size_t thread_count() const
+		{
+			return _thread_pool.thread_count();
 		}
 
 		const performable_service::clock_type::time_point& idle_start_time() const
@@ -118,6 +146,8 @@ namespace threading
 	private:
 		performable_queue		_queue;
 		thread_pool				_thread_pool;
+
+		atomic<bool>			_running;
 
 		mutable lock_type		_idle_start_time_lock;
 		clock_type::time_point	_idle_start_time;

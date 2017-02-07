@@ -26,7 +26,7 @@ namespace io
 		void flush();
 		void seek(int position, seek_origin origin);
 
-		size_t write(byte_type* buffer, size_t offset, size_t count);
+		size_t write(const byte_type* buffer, size_t offset, size_t count);
 		void write(bool value);
 		void write(int8_t value);
 		void write(uint8_t value);

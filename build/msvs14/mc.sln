@@ -6,27 +6,22 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mc", "mc\mc.vcxproj", "{601EAB8E-9FC1-4C61-BD3C-35680F92A251}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mc_test", "mc_test\mc_test.vcxproj", "{F590385B-B653-4E70-BEE3-7A46D11C8E4D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{601EAB8E-9FC1-4C61-BD3C-35680F92A251} = {601EAB8E-9FC1-4C61-BD3C-35680F92A251}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Debug|x64.ActiveCfg = Debug|Win32
 		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Debug|x86.ActiveCfg = Debug|Win32
 		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Debug|x86.Build.0 = Debug|Win32
-		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Release|x64.ActiveCfg = Release|Win32
 		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Release|x86.ActiveCfg = Release|Win32
 		{601EAB8E-9FC1-4C61-BD3C-35680F92A251}.Release|x86.Build.0 = Release|Win32
-		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Debug|x64.ActiveCfg = Debug|x64
-		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Debug|x64.Build.0 = Debug|x64
 		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Debug|x86.ActiveCfg = Debug|Win32
 		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Debug|x86.Build.0 = Debug|Win32
-		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Release|x64.ActiveCfg = Release|x64
-		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Release|x64.Build.0 = Release|x64
 		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Release|x86.ActiveCfg = Release|Win32
 		{F590385B-B653-4E70-BEE3-7A46D11C8E4D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection

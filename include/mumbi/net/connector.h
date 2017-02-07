@@ -6,45 +6,42 @@
 #include <system_error>
 #include <memory>
 #include <string>
-#include "event_signal.h"
+#include "../functional/event_signal.h"
 
 namespace mumbi {
 namespace net
 {
-	using std::error_code;
-	using std::enable_shared_from_this;
-	using std::string;
-	using std::unique_ptr;
+	using std::error_code;	
+	using std::string;	
 	using std::shared_ptr;
+
 	using mumbi::functional::event_signal;
+	using mumbi::functional::signal_connector;
 
 	class network_service;
 	class session;
-	class connector;
-
-	using session_ptr = shared_ptr<session>;
-	using connector_ptr = shared_ptr<connector>;
+	class connector;	
 
 	class connector final
-		: public enable_shared_from_this<connector>
 	{
-	public:
-		event_signal<connector, void(const error_code&)>	error_occurred;
-		event_signal<connector, void(const std::string&)>	connecting;
-		event_signal<connector, void(session_ptr)>			connected;
+	private:
+		using error_occurred_signal_type	= event_signal<connector, void(const error_code&)>;
+		using connecting_signal_type		= event_signal<connector, void(const std::string&)>;
+		using connected_signal_type			= event_signal<connector, void(session&)>;
 
 	public:
-		static connector_ptr create(network_service& network_service);
+		signal_connector<connector, error_occurred_signal_type>	error_occurred;
+		signal_connector<connector, connecting_signal_type>		connecting;
+		signal_connector<connector, connected_signal_type>		connected;
 
-		~connector();
-		void connect(const string& host, uint16_t port);		
-
-	private:		
+	public:		
 		connector(network_service& network_service);
+		
+		void connect(const string& host, uint16_t port);
 
 	private:
-		class impl;		
-		unique_ptr<impl>	_pimpl;
+		class impl;
+		shared_ptr<impl>	_pimpl;	
 	};
 }}
 

@@ -17,13 +17,14 @@ namespace threading
 	using std::function;
 	using std::vector;
 
-	class thread_pool
+	class thread_pool final
 	{
 		using function_type = function<void()>;		
 
 	public:
 		~thread_pool()
-		{	
+		{
+			join();
 		}
 
 		thread_pool(const function_type& function)
@@ -38,46 +39,35 @@ namespace threading
 		{			
 		}
 
-		void start()
+		void start()		
 		{
 			for (size_t i = 0; i < _max_thread_count; ++i)
 			{
-				_threads.emplace_back(&thread_pool::execution_on_thread, this);				
+				_threads.emplace_back(_function);
 			}
-
-			_thread_count = _max_thread_count;
 		}
-
-		void stop()
-		{
-			for_each(_threads.begin(), _threads.end(), [](auto& t)
+		
+		void join()
+		{			
+			for (auto& t : _threads)
 			{
 				if (t.joinable())					
 					t.join();
-			});
+			}
 
 			_threads.clear();
-
-			_thread_count = 0;
 		}		
 
 		size_t thread_count() const
 		{
-			return _thread_count;
-		}
-
-		void execution_on_thread()
-		{
-			if (_function)
-				_function();
-		}
+			return _threads.size();
+		}		
 
 	private:		
 		function_type		_function;
 
 		const size_t		_max_thread_count;
-		vector<thread>		_threads;
-		atomic<size_t>		_thread_count;
+		vector<thread>		_threads;		
 	};
 }}
 

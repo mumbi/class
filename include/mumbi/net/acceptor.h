@@ -5,46 +5,40 @@
 
 #include <system_error>
 #include <memory>
-#include "event_signal.h"
+#include "../functional/event_signal.h"
 
 namespace mumbi {
 namespace net
 {
-	using std::error_code;
-	using std::enable_shared_from_this;
-	using std::unique_ptr;
+	using std::error_code;		
 	using std::shared_ptr;
+	using std::string;
+
 	using mumbi::functional::event_signal;
+	using mumbi::functional::signal_connector;
 
 	class network_service;	
-	class session;
-	class acceptor;
-
-	using session_ptr = shared_ptr<session>;
-	using acceptor_ptr = shared_ptr<acceptor>;
+	class session;	
 	
-	class acceptor final
-		: public enable_shared_from_this<acceptor>
+	class acceptor final		
 	{
+	private:	
+		using error_occurred_signal_type	= event_signal<acceptor, void(const error_code&)>;
+		using accepted_signal_type			= event_signal<acceptor, void(session&, const string&)>;
+
 	public:
-		event_signal<acceptor, void(const error_code&)>		error_occurred;
-		event_signal<acceptor, void(session_ptr)>			accepted;
+		signal_connector<acceptor, error_occurred_signal_type>	error_occurred;
+		signal_connector<acceptor, accepted_signal_type>		accepted;
 
-	public:		
-		static acceptor_ptr	create(network_service& network_service, uint16_t port);
+	public:
+		acceptor(network_service& network_service, uint16_t port);	
 
-	public:		
-		~acceptor();
-
-		bool accept();		
-		void close();
+		void accept();		
+		void close();	
 
 	private:
-		acceptor(network_service& network_service, uint16_t port);
-
-	private:
-		class impl;
-		unique_ptr<impl>	_pimpl;
+		class impl;		
+		shared_ptr<impl>	_pimpl;		
 	};	
 }}
 

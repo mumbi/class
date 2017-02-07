@@ -25,7 +25,7 @@ namespace io
 		_stream.seek(position, origin);
 	}
 
-	size_t binary_writer::write(byte_type* buffer, size_t offset, size_t count)
+	size_t binary_writer::write(const byte_type* buffer, size_t offset, size_t count)
 	{
 		return _stream.write(buffer, offset, count);
 	}
@@ -87,15 +87,15 @@ namespace io
 
 	void binary_writer::write_7bit_encoded_int(int value)
 	{
-		uint32_t i = (uint32_t)value;
+		uint32_t i = static_cast<uint32_t>(value);
 
 		while (i >= 128)
 		{
-			write((uint8_t)(i | 128));
+			write(static_cast<uint8_t>(i | 128));
 			i >>= 7;
 		}
 
-		write((uint8_t)i);
+		write(static_cast<uint8_t>(i));
 	}
 
 	size_t binary_writer::size_of_7bit_encoded_int(int value)

@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include <stdexcept>
+
 namespace mumbi {
 namespace io
 {
@@ -111,16 +113,17 @@ namespace io
 
 	void memory_stream::set_position(size_t value)
 	{
-		size_t position = value;
+		//size_t position = value;
 
-		_index = 0;
-		while (position >= _buffers[_index]->size())
-		{
-			position -= _buffers[_index]->size();
-			++_index;
-		}
+		//_index = 0;
+		//while (position >= _buffers[_index]->size())
+		//{
+		//	position -= _buffers[_index]->size();
+		//	++_index;
+		//}
 
-		_position = position;
+		//_position = position;
+		seek(value, mumbi::io::seek_origin::begin);
 	}
 
 	void memory_stream::flush()
@@ -143,8 +146,8 @@ namespace io
 	uint8_t& memory_stream::peek_byte()
 	{	
 		buffer_type& buffer = *_buffers[_index];
-		if (buffer.size() == static_cast<size_t>(_position))
-			throw exception("end stream.");
+		if (buffer.size() <= static_cast<size_t>(_position))
+			throw out_of_range("end stream.");
 		
 		return buffer[_position];
 	}
@@ -157,8 +160,8 @@ namespace io
 	uint8_t memory_stream::read_byte()
 	{		
 		const buffer_type& buffer = *_buffers[_index];
-		if (buffer.size() == static_cast<size_t>(_position))
-			throw exception("end stream.");
+		if (buffer.size() <= static_cast<size_t>(_position))
+			throw out_of_range("end stream.");
 	
 		uint8_t byte = buffer[_position];	
 		advance_position(_index, _position, 1);
@@ -201,7 +204,7 @@ namespace io
 		case seek_origin::begin:
 			{
 				if (position < 0)
-					throw exception("position is negative.");				
+					throw invalid_argument("position is negative.");
 				
 				_index = 0;				
 				_position = 0;
@@ -219,7 +222,7 @@ namespace io
 		case seek_origin::end:
 			{
 				if (position > 0)
-					throw exception("position is positive.");
+					throw invalid_argument("position is positive.");
 
 				_index = _buffers.size() - 1;				
 				_position = _buffers[_index]->size();
@@ -289,7 +292,7 @@ namespace io
 				if (static_cast<size_t>(index) >= _buffers.size() - 1)
 				{
 					if (0 == available)
-						throw exception("out of range.");
+						throw out_of_range("out of range.");
 					
 					position = _buffers[index]->size();
 				}
@@ -313,7 +316,7 @@ namespace io
 			while (step > 0 && step > p)
 			{
 				if (index <= 0)
-					throw exception("out of range.");
+					throw out_of_range("out of range.");
 				
 				position = _buffers[--index]->size();
 				step -= p;

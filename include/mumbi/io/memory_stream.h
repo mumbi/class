@@ -12,10 +12,13 @@ namespace mumbi {
 namespace io
 {
 	using std::vector;
+	using std::out_of_range;
+	using std::invalid_argument;
 
 	class memory_stream
 		: public stream
 	{
+	private:
 		static constexpr size_t	default_capacity = 256;
 
 		using buffer_type	= vector<uint8_t>;
