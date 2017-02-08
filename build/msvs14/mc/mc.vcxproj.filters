@@ -170,11 +170,11 @@
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h">
       <Filter>include\mumbi\threading\tasking</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\mumbi\time\timer.h">
-      <Filter>include\mumbi\time</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h">
       <Filter>include\mumbi\threading\tasking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\time\updater.h">
+      <Filter>include\mumbi\time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -232,7 +232,7 @@
     <ClCompile Include="..\..\..\src\mumbi\threading\invoker_holder.cpp">
       <Filter>src\mumbi\threading</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\mumbi\time\timer.cpp">
+    <ClCompile Include="..\..\..\src\mumbi\time\updater.cpp">
       <Filter>src\mumbi\time</Filter>
     </ClCompile>
   </ItemGroup>

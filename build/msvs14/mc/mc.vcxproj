@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\..\include\mumbi\threading\promise.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h" />
-    <ClInclude Include="..\..\..\include\mumbi\time\timer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\time\updater.h" />
     <ClInclude Include="..\..\..\include\mumbi\util\range.h" />
     <ClInclude Include="..\..\..\include\mumbi\net\session.h" />
     <ClInclude Include="..\..\..\include\mumbi\io\stream.h" />
@@ -66,7 +66,7 @@
     <ClCompile Include="..\..\..\src\mumbi\threading\queue_service.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\net\session.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\io\stream.cpp" />
-    <ClCompile Include="..\..\..\src\mumbi\time\timer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\time\updater.cpp" />
     <ClCompile Include="..\..\..\src\mumbi\util\string_helper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

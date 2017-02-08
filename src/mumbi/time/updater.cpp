@@ -1,14 +1,14 @@
-#include "timer.h"
+#include "updater.h"
 
 namespace mumbi {
 namespace time
 {
-	bool timer::stopped() const
+	bool updater::stopped() const
 	{
 		return _stopped;
 	}
 
-	void timer::on_elapsed()
+	void updater::update()
 	{
 		if (_stopped)
 			return;
@@ -47,7 +47,7 @@ namespace time
 
 	}
 
-	bool timer::internal_update(double elapsed_time)
+	bool updater::internal_update(double elapsed_time)
 	{
 		if (!(_callable && _callable(elapsed_time, _fps)))
 			_stopped = true;
@@ -57,7 +57,7 @@ namespace time
 		return true;
 	}
 
-	void timer::set_fps(double elapsed_time)
+	void updater::set_fps(double elapsed_time)
 	{
 		_accumulated_elapsed_time += elapsed_time;
 		++_frame_count;

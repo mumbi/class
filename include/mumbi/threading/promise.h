@@ -416,7 +416,7 @@ namespace threading
 			: args_promise(performer_holder<result_type>(performer), forward<Callable>(callable), post)
 		{
 		}
-	};
+	};	
 
 	template<typename Callable>
 	auto make_promise(performer& performer, Callable&& callable)
@@ -430,29 +430,29 @@ namespace threading
 	auto waterfall_promise_then(performer& performer, Promise& promise)
 	{
 		return promise;
-	}
+	}	
 
 	template<class Promise, typename Callable, typename... Callables>
 	auto waterfall_promise_then(performer& performer, Promise& promise, Callable&& callable, Callables&&... callables)
 	{
 		return waterfall_promise_then(performer, promise.then(performer, forward<Callable>(callable)), forward<Callables>(callables)...);
-	}
+	}	
 	
-	template<typename Callable, typename... Callables>
-	auto waterfall_promise(performer& performer, Callable&& callable, Callables&&... callables)
+	template<typename Performer, typename Callable, typename... Callables>
+	auto waterfall_promise(Performer& performer, Callable&& callable, Callables&&... callables)
 	{
 		auto waterfall_promise = waterfall_promise_then(performer, make_promise(performer, forward<Callable>(callable)), forward<Callables>(callables)...);
 		return waterfall_promise.result();		
-	}
+	}	
 
-	template<typename... Callables>
-	auto make_promises(performer& performer, Callables&&... callables)
+	template<class Performer, typename... Callables>
+	auto make_promises(Performer& performer, Callables&&... callables)
 	{
 		return make_tuple(make_promise(performer, forward<Callables>(callables))...);
 	}
 
-	template<typename... Callables>
-	auto parallel_promise(performer& performer, Callables&&... callables)
+	template<class Performer, typename... Callables>
+	auto parallel_promise(Performer& performer, Callables&&... callables)
 	{
 		auto promises = make_promises(performer, forward<Callables>(callables)...);
 
@@ -470,7 +470,7 @@ namespace threading
 				}					
 			});			
 		});
-	}
+	}	
 
 	template<class Tuple>
 	bool has_exception_in_any_tuple(const Tuple& result)

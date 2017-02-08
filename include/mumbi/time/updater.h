@@ -17,7 +17,7 @@ namespace time
 	using std::atomic;
 	using std::forward;
 
-	class timer
+	class updater
 	{
 	private:
 		using clock_type = high_resolution_clock;
@@ -26,7 +26,7 @@ namespace time
 
 	public:
 		template<typename Callable>
-		timer(Callable&& callable, bool immediately_update = false)
+		updater(Callable&& callable, bool immediately_update = false)
 			: _callable(forward<Callable>(callable))
 			, _is_first_update(immediately_update)
 			, _last_update_time(clock_type::now())
@@ -40,7 +40,7 @@ namespace time
 		}
 
 		template<typename Callable>
-		timer(Callable&& callable, int fps, bool immediately_update = false)
+		updater(Callable&& callable, int fps, bool immediately_update = false)
 			: _callable(forward<Callable>(callable))
 			, _is_first_update(immediately_update)
 			, _last_update_time(clock_type::now())
@@ -54,7 +54,7 @@ namespace time
 		}
 
 		template<typename Callable, typename Rep, typename Period>
-		timer(Callable&& callable, const duration<Rep, Period>& d, bool immediately_update = false)
+		updater(Callable&& callable, const duration<Rep, Period>& d, bool immediately_update = false)
 			: _callable(forward<Callable>(callable))
 			, _is_first_update(immediately_update)
 			, _last_update_time(clock_type::now())
@@ -68,7 +68,7 @@ namespace time
 		}		
 
 		bool stopped() const;
-		void on_elapsed();
+		void update();
 
 	private:
 		bool internal_update(double elapsed_time);
