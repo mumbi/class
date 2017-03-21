@@ -176,6 +176,9 @@
     <ClInclude Include="..\..\..\include\mumbi\time\updater.h">
       <Filter>include\mumbi\time</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\mumbi\threading\spin_lock.h">
+      <Filter>include\mumbi\threading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\mumbi\net\acceptor.cpp">

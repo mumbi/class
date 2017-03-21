@@ -18,7 +18,7 @@ namespace threading
 	public:
 		explicit invoker_holder(shared_ptr<invoker> invoker);
 
-		bool invoke();
+		bool invoke() const;
 
 	protected:
 		shared_ptr<const invoker> get_invoker() const;

@@ -52,7 +52,7 @@ namespace threading
 		_pimpl->_performable_queue.run();
 	}
 	
-	void dedicated_performer::post(performable& performable)
+	void dedicated_performer::post(const performable& performable)
 	{
 		_pimpl->_performable_queue.post(performable);
 	}	

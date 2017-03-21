@@ -36,7 +36,8 @@ namespace net
 			session session(_network_service);			
 			session.get_impl()->_socket->async_connect(endpoint, bind(&impl::on_connected, this, std::placeholders::_1, endpoint_iterator, session));			
 			
-			connecting.emit(endpoint.address().to_string());
+			error_code ec;
+			connecting.emit(endpoint.address().to_string(ec));
 		}		
 		
 		void on_resolved(const error_code& error, tcp::resolver::iterator endpoint_iterator)
@@ -60,7 +61,7 @@ namespace net
 				connected.emit(session);
 
 				// session start.				
-				session.get_impl()->receive();				
+				session.get_impl()->receive(session);				
 			}
 			else if (tcp::resolver::iterator() != next_endpoint_iterator)
 			{
@@ -84,11 +85,11 @@ namespace net
 	};	
 	
 	connector::connector(network_service& network_service)
-		: _pimpl(new impl( network_service))		
+		: _impl(new impl( network_service))
 	{
-		error_occurred.connect(&_pimpl->error_occurred);
-		connecting.connect(&_pimpl->connecting);
-		connected.connect(&_pimpl->connected);
+		error_occurred.connect(&_impl->error_occurred);
+		connecting.connect(&_impl->connecting);
+		connected.connect(&_impl->connected);
 	}
 
 	void connector::connect(const string& host, uint16_t port)
@@ -97,6 +98,6 @@ namespace net
 		ss << port;
 
 		tcp::resolver::query query(host, ss.str());				
-		_pimpl->_resolver.async_resolve(query, bind(&connector::impl::on_resolved, _pimpl.get(), std::placeholders::_1, std::placeholders::_2));
+		_impl->_resolver.async_resolve(query, bind(&connector::impl::on_resolved, _impl.get(), std::placeholders::_1, std::placeholders::_2));
 	}	
 }}

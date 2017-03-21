@@ -72,7 +72,8 @@ namespace tasking
 		{			
 			lock_guard<invoke_lock>	lock(_invoke_lock);
 
-			_arguments.swap(tuple<Args...>(forward<Args>(args)...));
+			//_arguments.swap(tuple<Args...>(forward<Args>(args)...));
+			_arguments = tuple<Args...>(forward<Args>(args)...);
 		}
 
 		void set_exception(exception_ptr exception)

@@ -29,7 +29,7 @@ namespace threading
 
 		void run();
 		
-		void post(performable& performable) override;
+		void post(const performable& performable) override;
 
 	private:
 		class impl;

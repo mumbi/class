@@ -30,7 +30,7 @@ namespace threading
 		
 		void run();
 		
-		void post(performable& performable) override;
+		void post(const performable& performable) override;
 
 		size_t identical_performer_count() const;
 		dedicated_performer& get_identical_performer(int id);

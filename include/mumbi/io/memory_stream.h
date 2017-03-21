@@ -4,6 +4,7 @@
 #define MUMBI__IO__MEMORY_STREAM__H
 
 #include "stream.h"
+#include "buffer.h"
 
 #include <vector>
 #include <memory>
@@ -19,16 +20,15 @@ namespace io
 		: public stream
 	{
 	private:
-		static constexpr size_t	default_capacity = 256;
+		static constexpr size_t	default_capacity = 256;		
 
-		using buffer_type	= vector<uint8_t>;
-		using buffer_ptr	= std::shared_ptr<buffer_type>;
+		using data_type = buffer::data_type;
 
 	public:
 		memory_stream();
 		memory_stream(size_t initial_capacity);
-		memory_stream(buffer_ptr buffer);
-		memory_stream(vector<buffer_ptr> buffers);
+		memory_stream(const buffer& buffer);
+		memory_stream(const vector<buffer>& buffers);
 
 		void close() override;
 		size_t get_length() const override;
@@ -46,7 +46,7 @@ namespace io
 		int seek(int position, seek_origin origin) override;
 
 		size_t available_size() const;		
-		const vector<buffer_ptr>& buffers() const;
+		const vector<buffer>& buffers() const;
 
 	private:		
 		void increase_buffer(size_t capacity);		
@@ -59,13 +59,13 @@ namespace io
 		size_t copy_to(int& index, int& position, uint8_t* buffer, size_t offset, size_t count) const;
 		size_t copy_to(int& index, int& position, uint8_t* buffer, size_t offset, size_t count);
 
-		buffer_type::iterator position_to_iterator(int index, int position) const;
+		buffer::iterator position_to_iterator(int index, int position);
 
 	private:
-		vector<buffer_ptr>	_buffers;
+		vector<buffer>	_buffers;
 		
-		int					_index;
-		int					_position;
+		int				_index;
+		int				_position;
 	};
 }}
 

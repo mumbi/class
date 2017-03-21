@@ -12,27 +12,21 @@ namespace io
 	using std::min;
 
 	memory_stream::memory_stream()
-		: _index(0)
-		, _position(0)
-	{	
-		_buffers.push_back(make_shared<buffer_type>(default_capacity));
+		: memory_stream(default_capacity)
+	{
 	}
 
 	memory_stream::memory_stream(size_t initial_capacity)
-		: _index(0)
-		, _position(0)
-	{	
-		_buffers.push_back(make_shared<buffer_type>(initial_capacity));		
+		: memory_stream(buffer(initial_capacity))
+	{
 	}
 
-	memory_stream::memory_stream(buffer_ptr buffer)		
-		: _index(0)
-		, _position(0)
-	{		
-		_buffers.push_back(buffer);		
+	memory_stream::memory_stream(const buffer& b)
+		: memory_stream(vector<buffer> { b })
+	{
 	}	
 
-	memory_stream::memory_stream(vector<buffer_ptr> buffers)
+	memory_stream::memory_stream(const vector<buffer>& buffers)
 		: _buffers(buffers)
 		, _index(0)		
 		, _position(0)
@@ -46,9 +40,9 @@ namespace io
 	size_t memory_stream::get_length() const
 	{
 		size_t length = 0;
-		for (const buffer_ptr& buffer : _buffers)
+		for (const buffer& buffer : _buffers)
 		{
-			length += buffer->size();
+			length += buffer.data().size();
 		}
 
 		return length;
@@ -65,18 +59,20 @@ namespace io
 		{
 			while (distance > 0)
 			{
-				buffer_ptr last_buffer = _buffers.back();
-				size_t last_buffer_size = last_buffer->size();
+				buffer& last_buffer = _buffers.back();
+				data_type& last_buffer_data = last_buffer.data();
+
+				size_t last_buffer_size = last_buffer_data.size();
 
 				size_t remove_size = 0;
 				
 				const int distance_from_last_buffer = last_buffer_size - distance;
 				if (distance_from_last_buffer > 0)
 				{
-					last_buffer->resize(distance_from_last_buffer);				
+					last_buffer_data.resize(distance_from_last_buffer);
 
-					if (static_cast<size_t>(_index) >= _buffers.size() - 1 && static_cast<size_t>(_position) > last_buffer->size())
-						_position = last_buffer->size();
+					if (static_cast<size_t>(_index) >= _buffers.size() - 1 && static_cast<size_t>(_position) > last_buffer_data.size())
+						_position = last_buffer_data.size();
 
 					remove_size = distance;
 				}
@@ -85,7 +81,7 @@ namespace io
 					_buffers.pop_back();
 
 					--_index;					
-					_position = _index >= 0 ? _buffers[_index]->size() : 0;					
+					_position = _index >= 0 ? _buffers[_index].data().size() : 0;					
 
 					remove_size = last_buffer_size;
 				}
@@ -105,7 +101,7 @@ namespace io
 		int position = 0;
 		for (int i = 0; i < _index; ++i)
 		{
-			position += _buffers[i]->size();
+			position += _buffers[i].data().size();
 		}
 		
 		return position + _position;
@@ -145,11 +141,13 @@ namespace io
 
 	uint8_t& memory_stream::peek_byte()
 	{	
-		buffer_type& buffer = *_buffers[_index];
-		if (buffer.size() <= static_cast<size_t>(_position))
+		buffer& buffer = _buffers[_index];
+		data_type& data = buffer.data();
+
+		if (data.size() <= static_cast<size_t>(_position))
 			throw out_of_range("end stream.");
 		
-		return buffer[_position];
+		return data[_position];
 	}
 
 	size_t memory_stream::read(uint8_t* buffer, size_t offset, size_t count)
@@ -159,11 +157,13 @@ namespace io
 
 	uint8_t memory_stream::read_byte()
 	{		
-		const buffer_type& buffer = *_buffers[_index];
-		if (buffer.size() <= static_cast<size_t>(_position))
+		const buffer& buffer = _buffers[_index];
+		const data_type& data = buffer.data();
+
+		if (data.size() <= static_cast<size_t>(_position))
 			throw out_of_range("end stream.");
 	
-		uint8_t byte = buffer[_position];	
+		uint8_t byte = data[_position];
 		advance_position(_index, _position, 1);
 
 		return byte;
@@ -225,7 +225,7 @@ namespace io
 					throw invalid_argument("position is positive.");
 
 				_index = _buffers.size() - 1;				
-				_position = _buffers[_index]->size();
+				_position = _buffers[_index].data().size();
 				
 				advance_position(_index, _position, position);
 			}
@@ -242,20 +242,20 @@ namespace io
 
 		for (size_t i = _index + 1; i < _buffers.size(); ++i)
 		{
-			size += _buffers[i]->size();
+			size += _buffers[i].data().size();
 		}
 
 		return size;
 	}	
 
-	const vector<memory_stream::buffer_ptr>& memory_stream::buffers() const
+	const vector<buffer>& memory_stream::buffers() const
 	{
 		return _buffers;
 	}
 
 	void memory_stream::increase_buffer(size_t capacity)
 	{
-		_buffers.push_back(make_shared<buffer_type>(capacity));
+		_buffers.emplace_back(capacity);
 
 		if (_index < 0)
 		{
@@ -271,7 +271,7 @@ namespace io
 	
 	size_t memory_stream::available_size_in_buffer(int index, int position) const
 	{
-		return _buffers[index]->size() - position;		
+		return _buffers[index].data().size() - position;		
 	}	
 	
 	void memory_stream::advance_position(int& index, int& position, int step) const
@@ -294,7 +294,7 @@ namespace io
 					if (0 == available)
 						throw out_of_range("out of range.");
 					
-					position = _buffers[index]->size();
+					position = _buffers[index].data().size();
 				}
 				else
 				{
@@ -318,7 +318,7 @@ namespace io
 				if (index <= 0)
 					throw out_of_range("out of range.");
 				
-				position = _buffers[--index]->size();
+				position = _buffers[--index].data().size();
 				step -= p;
 				p = position;
 			}			
@@ -353,8 +353,8 @@ namespace io
 		return readable_count;
 	}
 
-	memory_stream::buffer_type::iterator memory_stream::position_to_iterator(int index, int position) const
+	buffer::iterator memory_stream::position_to_iterator(int index, int position)
 	{
-		return begin(*_buffers[index]) + position;
+		return begin(_buffers[index].data()) + position;
 	}
 }}

@@ -26,14 +26,14 @@ namespace threading
 		return _working_count;
 	}
 	
-	void performable_queue::post(performable& performable)
+	void performable_queue::post(const performable& performable)
 	{
 		get_io_service().post(bind(&performable_queue::on_dispatched, this, performable));
 
 		++_post_count;
 	}	
 	
-	void performable_queue::on_dispatched(performable& performable)
+	void performable_queue::on_dispatched(const performable& performable)
 	{	
 		const auto thread_id = this_thread::get_id();
 

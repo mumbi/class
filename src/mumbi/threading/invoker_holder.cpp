@@ -10,7 +10,7 @@ namespace threading
 	{
 	}
 
-	bool invoker_holder::invoke()
+	bool invoker_holder::invoke() const
 	{
 		if (_invoker)
 			return _invoker->invoke();

@@ -13,10 +13,11 @@ namespace net
 	using std::string;	
 	using std::error_code;
 	using std::shared_ptr;
+	using std::vector;
 
 	using mumbi::functional::event_signal;
-	using mumbi::functional::signal_connector;
-	using mumbi::io::buffer_ptr;
+	using mumbi::functional::signal_connector;	
+	using mumbi::io::buffer;
 
 	class network_service;	
 	class session;	
@@ -24,8 +25,8 @@ namespace net
 	class session final		
 	{
 	private:
-		using disconnected_signal_type = event_signal<session, void(session&, const error_code&)>;
-		using received_signal_type = event_signal<session, void(session&, const error_code&, buffer_ptr)>;
+		using disconnected_signal_type = event_signal<session, void(session&, const error_code&)>;		
+		using received_signal_type = event_signal<session, void(session&, const error_code&, const buffer&)>;
 		using sent_signal_type = event_signal<session, void(session&, const error_code&, size_t)>;
 
 	public:
@@ -44,14 +45,17 @@ namespace net
 		
 		bool is_connected() const;
 		bool disconnect();
+		
+		void send(const buffer& buff);
 
-		void send(buffer_ptr buffer);
+	private:		
+		static void on_received(const error_code& error, size_t bytes_transferred, buffer& buffer, session& session);
+		static void on_sent(const error_code& error, size_t bytes_transferred, session& session, buffer& buffer);
+		static void on_sent_buffers(const error_code& error, size_t bytes_transferred, session& session, vector<buffer>& buffers);
 
 	private:
 		class impl;		
-		shared_ptr<impl>	_pimpl;
-
-		session(shared_ptr<impl> pimpl);		
+		shared_ptr<impl>	_impl;
 
 	public:
 		shared_ptr<impl> get_impl();

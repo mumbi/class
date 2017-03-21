@@ -72,7 +72,7 @@ namespace threading
 			return thread_count;
 		}
 		
-		void post(performable& performable)
+		void post(const performable& performable)
 		{
 			lock_guard<lock_type> guard(_performable_services_lock);
 
@@ -248,7 +248,7 @@ namespace threading
 		_pimpl->end_running();
 	}
 	
-	void common_performer::post(performable& performable)
+	void common_performer::post(const performable& performable)
 	{
 		_pimpl->post(performable);
 	}

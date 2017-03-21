@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\..\include\mumbi\threading\performable.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\performer.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\promise.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\spin_lock.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h" />
     <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h" />
     <ClInclude Include="..\..\..\include\mumbi\time\updater.h" />
@@ -103,11 +104,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\externals\moodycamel;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;..\..\..\include\mumbi\time;$(IncludePath)</IncludePath>
     <OutDir>bin\$(PlatformTarget)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;..\..\..\include\mumbi\time;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\..\externals\asio-1.11.0\include;..\..\..\externals\moodycamel;..\..\..\include\mumbi;..\..\..\include\mumbi\functional;..\..\..\include\mumbi\io;..\..\..\include\mumbi\net;..\..\..\include\mumbi\threading;..\..\..\include\mumbi\threading\tasking;..\..\..\include\mumbi\util;..\..\..\include\mumbi\std\experimental;..\..\..\include\mumbi\exception;..\..\..\include\mumbi\time;$(IncludePath)</IncludePath>
     <OutDir>bin\$(PlatformTarget)\</OutDir>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
@@ -121,7 +122,7 @@
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StructMemberAlignment>Default</StructMemberAlignment>
     </ClCompile>
     <Link>
@@ -143,7 +144,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

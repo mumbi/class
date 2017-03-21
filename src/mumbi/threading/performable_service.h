@@ -95,7 +95,7 @@ namespace threading
 			}
 		}
 		
-		void post(performable& performable)
+		void post(const performable& performable)
 		{
 			_queue.post(performable);
 		}

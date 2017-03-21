@@ -21,7 +21,7 @@ namespace threading
 		virtual ~performable();
 		performable(shared_ptr<invoker> invoker);
 
-		void perform();		
+		void perform() const;
 	};
 }}
 

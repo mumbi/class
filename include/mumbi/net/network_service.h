@@ -27,7 +27,7 @@ namespace net
 
 	private:
 		class impl;
-		unique_ptr<impl>	_pimpl;
+		unique_ptr<impl>	_impl;
 
 	public:
 		impl& get_impl();

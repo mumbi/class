@@ -15,7 +15,7 @@ namespace threading
 	public:
 		virtual ~performer() = 0 {};	
 		
-		virtual void post(performable& performable) = 0;
+		virtual void post(const performable& performable) = 0;
 	};
 }}
 

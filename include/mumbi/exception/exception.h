@@ -35,7 +35,14 @@ namespace exception
 	public:
 		invalid_object_exception(const string& message);
 		invalid_object_exception(const char* message);
-	};	
+	};
+
+	class nullptr_exception : public logic_error
+	{
+	public:
+		nullptr_exception(const string& message);
+		nullptr_exception(const char* message);
+	};
 }}
 
 #endif	// MUMBI__EXCEPTION__EXCEPTION__H

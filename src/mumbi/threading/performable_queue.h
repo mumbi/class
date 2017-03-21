@@ -29,10 +29,10 @@ namespace threading
 		size_t post_count() const;
 		size_t working_count() const;	
 		
-		void post(performable& performable);
+		void post(const performable& performable);
 
 	private:		
-		void on_dispatched(performable& performable);
+		void on_dispatched(const performable& performable);
 
 	private:
 		atomic<size_t>	_post_count;

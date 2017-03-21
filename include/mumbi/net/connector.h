@@ -41,7 +41,7 @@ namespace net
 
 	private:
 		class impl;
-		shared_ptr<impl>	_pimpl;	
+		shared_ptr<impl>	_impl;
 	};
 }}
 

@@ -14,7 +14,7 @@ namespace threading
 	{
 	}	
 
-	void performable::perform()
+	void performable::perform() const
 	{
 		invoke();
 	}

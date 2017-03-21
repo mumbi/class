@@ -34,7 +34,7 @@ namespace threading
 		void start_running();
 		void end_running();
 		
-		void post(performable& performable) override;
+		void post(const performable& performable) override;
 
 	private:
 		class impl;

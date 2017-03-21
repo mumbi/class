@@ -73,7 +73,7 @@ namespace threading
 				return _performer;
 			}
 			
-			void post(performable& performable) override
+			void post(const performable& performable) override
 			{
 				_performer.post(performable);
 			}			
@@ -217,7 +217,7 @@ namespace threading
 		_pimpl->end_running_dedicated_performing_threads();
 	}
 	
-	void performer_bundle::post(performable& performable)
+	void performer_bundle::post(const performable& performable)
 	{
 		_pimpl->_common_performer.post(performable);
 	}

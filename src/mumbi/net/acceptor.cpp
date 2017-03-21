@@ -25,8 +25,8 @@ namespace net
 			: _network_service(network_service)
 			, _bind_endpoint(tcp::v6(), port)
 		{
-		}		
-		
+		}				
+
 		void accept()
 		{
 			if (!_acceptor)
@@ -40,24 +40,22 @@ namespace net
 					throw network_exception(error.value(), error.message().c_str());
 
 				_acceptor->listen();
-			}			
+			}
 			
-			session accept_session(_network_service);			
-			auto accept_endpoint = make_shared<tcp::endpoint>();
-			
-			_acceptor->async_accept(*accept_session.get_impl()->_socket, *accept_endpoint, std::bind(&impl::on_accepted, this, std::placeholders::_1, accept_session, accept_endpoint));			
-		}		
+			session accept_session(_network_service);
+			_acceptor->async_accept(*accept_session.get_impl()->_socket, std::bind(&impl::on_accepted, this, std::placeholders::_1, accept_session));
+		}
 		
-		void on_accepted(const error_code& error, session& session, shared_ptr<tcp::endpoint> endpoint)		
+		void on_accepted(const error_code& error, session& session)		
 		{			
 			if (!error)
 			{
-				session.get_impl()->_is_connected = true;				
+				session.get_impl()->_is_connected = true;
 				
-				accepted.emit(session, endpoint->address().to_string());				
+				accepted.emit(session, session.remote_endpoint());
 
-				// session start.								
-				session.get_impl()->receive();				
+				// session start.
+				session.get_impl()->receive(session);				
 
 				// post accept again.				
 				accept();
@@ -79,20 +77,20 @@ namespace net
 	};	
 
 	acceptor::acceptor(network_service& network_service, uint16_t port)
-		: _pimpl(make_shared<impl>(network_service, port))
+		: _impl(make_shared<impl>(network_service, port))
 	{
-		error_occurred.connect(&_pimpl->error_occurred);
-		accepted.connect(&_pimpl->accepted);		
+		error_occurred.connect(&_impl->error_occurred);
+		accepted.connect(&_impl->accepted);
 	}
 
 	void acceptor::accept()
 	{	
-		_pimpl->accept();
+		_impl->accept();
 	}
 
 	void acceptor::close()
 	{
-		_pimpl->_acceptor->close();
-		_pimpl->_acceptor = nullptr;		
+		_impl->_acceptor->close();
+		_impl->_acceptor = nullptr;
 	}
 }}

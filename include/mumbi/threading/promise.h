@@ -118,7 +118,7 @@ namespace threading
 				return p;
 			}
 
-			void post(performable& performable)
+			void post(const performable& performable)
 			{
 				_performer.post(performable);
 			}
@@ -356,13 +356,13 @@ namespace threading
 
 	protected:
 		template<typename R, typename Callable>
-		args_promise(performer_holder<R>& performer_holder, Callable&& callable, bool post)
+		args_promise(const performer_holder<R>& performer_holder, Callable&& callable, bool post)
 			: _impl(make_shared<impl<R(Args...)>>(performer_holder._performer, forward<Callable>(callable), post))
 		{
 		}
 
 		template<typename T>
-		shared_ptr<T> get_impl()
+		shared_ptr<T> get_impl() const
 		{
 			return static_pointer_cast<T>(_impl);
 		}
@@ -388,7 +388,7 @@ namespace threading
 	public:
 		template<typename Callable>
 		promise(performer& performer, Callable&& callable)
-			: args_promise(performer_holder<result_type>(performer), forward<Callable>(callable), true)
+			: args_promise(forward<performer_holder<result_type>>(performer_holder<result_type>(performer)), forward<Callable>(callable), true)
 		{
 		}		
 
@@ -404,7 +404,7 @@ namespace threading
 		}
 
 		template<typename Callable>
-		auto then(performer& performer, Callable&& callable)
+		auto then(performer& performer, Callable&& callable) const
 		{
 			auto implementation = get_impl<impl<function_type>>();
 			return implementation->then(performer, forward<Callable>(callable));
@@ -427,13 +427,13 @@ namespace threading
 	}	
 
 	template<class Promise>
-	auto waterfall_promise_then(performer& performer, Promise& promise)
+	auto waterfall_promise_then(performer& /*performer*/, const Promise& promise)
 	{
 		return promise;
 	}	
 
 	template<class Promise, typename Callable, typename... Callables>
-	auto waterfall_promise_then(performer& performer, Promise& promise, Callable&& callable, Callables&&... callables)
+	auto waterfall_promise_then(performer& performer, const Promise& promise, Callable&& callable, Callables&&... callables)
 	{
 		return waterfall_promise_then(performer, promise.then(performer, forward<Callable>(callable)), forward<Callables>(callables)...);
 	}	
@@ -451,6 +451,27 @@ namespace threading
 		return make_tuple(make_promise(performer, forward<Callables>(callables))...);
 	}
 
+	template<typename T>
+	struct any_setter
+	{
+		template<class Promise>
+		any set_any(const Promise& promise)
+		{
+			return any(promise.result());
+		}
+	};
+
+	template<>
+	struct any_setter<void>
+	{
+		template<class Promise>
+		any set_any(const Promise& promise)
+		{
+			promise.result();
+			return any(nullptr);
+		}
+	};
+
 	template<class Performer, typename... Callables>
 	auto parallel_promise(Performer& performer, Callables&&... callables)
 	{
@@ -462,13 +483,14 @@ namespace threading
 			{
 				try
 				{
-					return any(promise.result());
+					any_setter<std::decay<decltype(promise)>::type::result_type> setter;
+					return setter.set_any(promise);					
 				}
 				catch (...)
 				{
-					return any(current_exception());
-				}					
-			});			
+					return any(current_exception());					
+				}
+			});
 		});
 	}	
 
