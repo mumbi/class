@@ -57,7 +57,7 @@ namespace net
 		if (!_impl)
 			throw invalid_object_exception("invalid session.");
 
-		asio::error_code error;
+		error_code error;
 		_impl->_socket->shutdown(tcp::socket::shutdown_both, error);
 
 		return !error;
