@@ -50,7 +50,7 @@ namespace io
 
 	void memory_stream::set_length(size_t length)
 	{
-		int distance = get_length() - length;
+		int distance = static_cast<int>(get_length() - length);
 
 		if (0 == distance)
 			return;
@@ -66,7 +66,7 @@ namespace io
 
 				size_t remove_size = 0;
 				
-				const int distance_from_last_buffer = last_buffer_size - distance;
+				const int distance_from_last_buffer = static_cast<int>(last_buffer_size - distance);
 				if (distance_from_last_buffer > 0)
 				{
 					last_buffer_data.resize(distance_from_last_buffer);
@@ -86,7 +86,7 @@ namespace io
 					remove_size = last_buffer_size;
 				}
 
-				distance -= remove_size;
+				distance -= static_cast<int>(remove_size);
 			}
 		}
 		else
@@ -96,10 +96,10 @@ namespace io
 		}
 	}
 
-	int memory_stream::get_position() const
+	size_t memory_stream::get_position() const
 	{
-		int position = 0;
-		for (int i = 0; i < _index; ++i)
+		size_t position = 0;
+		for (size_t i = 0; i < _index; ++i)
 		{
 			position += _buffers[i].data().size();
 		}
@@ -119,7 +119,7 @@ namespace io
 		//}
 
 		//_position = position;
-		seek(value, mumbi::io::seek_origin::begin);
+		seek(static_cast<int>(value), mumbi::io::seek_origin::begin);
 	}
 
 	void memory_stream::flush()
@@ -128,8 +128,8 @@ namespace io
 
 	size_t memory_stream::peek(uint8_t* buffer, size_t offset, size_t count) const
 	{
-		int index = _index;		
-		int position = _position;
+		size_t index = _index;		
+		size_t position = _position;
 		
 		return copy_to(index, position, buffer, offset, count);
 	}
@@ -183,7 +183,7 @@ namespace io
 			
 			copy(buffer + offset, buffer + offset + writing, position_to_iterator(_index, _position));
 			
-			advance_position(_index, _position, writing);
+			advance_position(_index, _position, static_cast<int>(writing));
 
 			write_count -= writing;
 			offset += writing;
@@ -197,7 +197,7 @@ namespace io
 		write(&byte, 0, sizeof(byte));		
 	}
 
-	int memory_stream::seek(int position, seek_origin origin)
+	size_t memory_stream::seek(int position, seek_origin origin)
 	{
 		switch (origin)
 		{
@@ -269,17 +269,17 @@ namespace io
 		}
 	}	
 	
-	size_t memory_stream::available_size_in_buffer(int index, int position) const
+	size_t memory_stream::available_size_in_buffer(size_t index, size_t position) const
 	{
 		return _buffers[index].data().size() - position;		
 	}	
 	
-	void memory_stream::advance_position(int& index, int& position, int step) const
+	/*void memory_stream::advance_position(size_t& index, size_t& position, int step) const
 	{
 		return const_cast<memory_stream*>(this)->advance_position(index, position, step);
-	}
+	}*/
 	
-	void memory_stream::advance_position(int& index, int& position, int step)
+	void memory_stream::advance_position(size_t& index, size_t& position, int step) const
 	{
 		if (0 == step)
 			return;
@@ -302,7 +302,7 @@ namespace io
 					position = 0;
 				}
 				
-				step -= available;
+				step -= static_cast<int>(available);
 				available = available_size_in_buffer(index, position);
 			}			
 			
@@ -310,29 +310,30 @@ namespace io
 		}
 		else
 		{
-			step = -step;
+			//step = -step;
+			size_t positive_step = -step;
 
-			int p = position;
-			while (step > 0 && step > p)
+			size_t p = position;
+			while (positive_step > 0 && positive_step > p)
 			{
 				if (index <= 0)
 					throw out_of_range("out of range.");
 				
 				position = _buffers[--index].data().size();
-				step -= p;
+				positive_step -= p;
 				p = position;
 			}			
 			
-			position -= step;
+			position -= positive_step;
 		}		
 	}
 	
-	size_t memory_stream::copy_to(int& index, int& position, uint8_t* buffer, size_t offset, size_t count) const
+	size_t memory_stream::copy_to(size_t& index, size_t& position, uint8_t* buffer, size_t offset, size_t count) const
 	{
 		return const_cast<memory_stream*>(this)->copy_to(index, position, buffer, offset, count);
 	}
 	
-	size_t memory_stream::copy_to(int& index, int& position, uint8_t* buffer, size_t offset, size_t count)
+	size_t memory_stream::copy_to(size_t& index, size_t& position, uint8_t* buffer, size_t offset, size_t count)
 	{
 		const size_t readable_count = min(available_size(), count);
 		size_t read_count = readable_count;
@@ -344,7 +345,7 @@ namespace io
 			
 			copy(position_to_iterator(index, position), position_to_iterator(index, position + reading), buffer + offset);
 			
-			advance_position(index, position, reading);
+			advance_position(index, position, static_cast<int>(reading));
 
 			read_count -= reading;
 			offset += reading;
@@ -353,7 +354,7 @@ namespace io
 		return readable_count;
 	}
 
-	buffer::iterator memory_stream::position_to_iterator(int index, int position)
+	buffer::iterator memory_stream::position_to_iterator(size_t index, size_t position)
 	{
 		return begin(_buffers[index].data()) + position;
 	}

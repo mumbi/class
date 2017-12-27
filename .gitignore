@@ -1,0 +1,13 @@
+# /bin
+*.ipdb
+*.iobj
+*.ilk
+*.idb
+
+# /build
+
+.vs/
+*.user
+
+/build/msvc15/*/*/
+!/build/msvc15/*/bin/

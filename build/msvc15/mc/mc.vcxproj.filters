@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="exception">
+      <UniqueIdentifier>{c968ff59-5c3e-48cb-b466-94ea7a895517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="functional">
+      <UniqueIdentifier>{141c9fa9-c40e-4e0e-a2cd-7d5584e37e12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="io">
+      <UniqueIdentifier>{1389c74a-ad6f-427d-8f74-9dc0d33aaf30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{ca493fd7-97a1-44db-bb15-98ec935749e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="std">
+      <UniqueIdentifier>{4e74189e-794a-4349-8a28-f0973bd216fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="threading">
+      <UniqueIdentifier>{8b2f62d5-b08d-465e-911f-e7c1b20a2a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="threading\tasking">
+      <UniqueIdentifier>{009b4c8d-2148-47d8-bb6b-32a94039e08e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="time">
+      <UniqueIdentifier>{75c1b090-6a26-48c4-b83f-dca99703a7d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{63c88afa-3d24-49d0-a6d5-88d3b93d6a26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\include\mumbi\exception\exception.h">
+      <Filter>exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\functional\event_signal.h">
+      <Filter>functional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\io\binary_reader.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\io\binary_writer.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\io\buffer.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\io\memory_stream.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\io\stream.h">
+      <Filter>io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\net\acceptor.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\net\connector.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\net\network_service.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\net\session.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\std\experimental\any.h">
+      <Filter>std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\std\experimental\optional.h">
+      <Filter>std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\common_performer.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\dedicated_performer.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\invoker.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\invoker_holder.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\performable.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\performer.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\performer_bundle.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\promise.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\spin_lock.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\tasking\task.h">
+      <Filter>threading\tasking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\threading\tasking\timer_task.h">
+      <Filter>threading\tasking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\time\updater.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\util\range.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\util\scoped.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\util\string_helper.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\util\traits.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\mumbi\util\tuple.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\net\network_service_impl.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\net\session_impl.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\threading\performable_queue.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\threading\performable_service.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\threading\queue_service.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\threading\thread_pool.h">
+      <Filter>threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\mumbi\asio.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\mumbi\exception\exception.cpp">
+      <Filter>exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\io\binary_reader.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\io\binary_writer.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\io\buffer.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\io\memory_stream.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\io\stream.cpp">
+      <Filter>io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\net\acceptor.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\net\connector.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\net\network_service.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\net\session.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\util\string_helper.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\time\updater.cpp">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\common_performer.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\dedicated_performer.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\invoker_holder.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\performable.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\performable_queue.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\performer_bundle.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\mumbi\threading\queue_service.cpp">
+      <Filter>threading</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

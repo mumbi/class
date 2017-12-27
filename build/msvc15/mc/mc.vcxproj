@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{9CE996E8-180B-4D7E-ACEA-C8EAF8A80699}</ProjectGuid>
+    <RootNamespace>mc</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>bin\</OutDir>
+    <TargetName>$(ProjectName)_$(PlatformTarget)d</TargetName>
+    <IncludePath>D:\workspace\class\externals\moodycamel;D:\workspace\class\externals\asio-1.11.0\include;D:\workspace\class\include\mumbi\exception;D:\workspace\class\include\mumbi\functional;D:\workspace\class\include\mumbi\io;D:\workspace\class\include\mumbi\net;D:\workspace\class\include\mumbi\threading;D:\workspace\class\include\mumbi\time;D:\workspace\class\include\mumbi\util;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>bin\</OutDir>
+    <TargetName>$(ProjectName)_$(PlatformTarget)</TargetName>
+    <IncludePath>D:\workspace\class\externals\moodycamel;D:\workspace\class\externals\asio-1.11.0\include;D:\workspace\class\include\mumbi\exception;D:\workspace\class\include\mumbi\functional;D:\workspace\class\include\mumbi\io;D:\workspace\class\include\mumbi\net;D:\workspace\class\include\mumbi\threading;D:\workspace\class\include\mumbi\time;D:\workspace\class\include\mumbi\util;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>bin\</OutDir>
+    <TargetName>$(ProjectName)_$(PlatformTarget)d</TargetName>
+    <IncludePath>D:\workspace\class\externals\moodycamel;D:\workspace\class\externals\asio-1.11.0\include;D:\workspace\class\include\mumbi\exception;D:\workspace\class\include\mumbi\functional;D:\workspace\class\include\mumbi\io;D:\workspace\class\include\mumbi\net;D:\workspace\class\include\mumbi\threading;D:\workspace\class\include\mumbi\time;D:\workspace\class\include\mumbi\util;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>bin\</OutDir>
+    <TargetName>$(ProjectName)_$(PlatformTarget)</TargetName>
+    <IncludePath>D:\workspace\class\externals\moodycamel;D:\workspace\class\externals\asio-1.11.0\include;D:\workspace\class\include\mumbi\exception;D:\workspace\class\include\mumbi\functional;D:\workspace\class\include\mumbi\io;D:\workspace\class\include\mumbi\net;D:\workspace\class\include\mumbi\threading;D:\workspace\class\include\mumbi\time;D:\workspace\class\include\mumbi\util;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ProgramDataBaseFileName>$(OutputPath)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ProgramDataBaseFileName>$(OutputPath)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ProgramDataBaseFileName>$(OutputPath)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ProgramDataBaseFileName>$(OutputPath)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\mumbi\exception\exception.h" />
+    <ClInclude Include="..\..\..\include\mumbi\functional\event_signal.h" />
+    <ClInclude Include="..\..\..\include\mumbi\io\binary_reader.h" />
+    <ClInclude Include="..\..\..\include\mumbi\io\binary_writer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\io\buffer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\io\memory_stream.h" />
+    <ClInclude Include="..\..\..\include\mumbi\io\stream.h" />
+    <ClInclude Include="..\..\..\include\mumbi\net\acceptor.h" />
+    <ClInclude Include="..\..\..\include\mumbi\net\connector.h" />
+    <ClInclude Include="..\..\..\include\mumbi\net\network_service.h" />
+    <ClInclude Include="..\..\..\include\mumbi\net\session.h" />
+    <ClInclude Include="..\..\..\include\mumbi\std\experimental\any.h" />
+    <ClInclude Include="..\..\..\include\mumbi\std\experimental\optional.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\common_performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\dedicated_performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\invoker_holder.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\performable.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\performer.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\performer_bundle.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\promise.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\spin_lock.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\threading\tasking\timer_task.h" />
+    <ClInclude Include="..\..\..\include\mumbi\time\updater.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\range.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\scoped.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\string_helper.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\traits.h" />
+    <ClInclude Include="..\..\..\include\mumbi\util\tuple.h" />
+    <ClInclude Include="..\..\..\src\mumbi\asio.h" />
+    <ClInclude Include="..\..\..\src\mumbi\net\network_service_impl.h" />
+    <ClInclude Include="..\..\..\src\mumbi\net\session_impl.h" />
+    <ClInclude Include="..\..\..\src\mumbi\threading\performable_queue.h" />
+    <ClInclude Include="..\..\..\src\mumbi\threading\performable_service.h" />
+    <ClInclude Include="..\..\..\src\mumbi\threading\queue_service.h" />
+    <ClInclude Include="..\..\..\src\mumbi\threading\thread_pool.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\mumbi\exception\exception.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\io\binary_reader.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\io\binary_writer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\io\buffer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\io\memory_stream.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\io\stream.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\net\acceptor.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\net\connector.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\net\network_service.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\net\session.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\common_performer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\dedicated_performer.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\invoker_holder.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\performable.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\performable_queue.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\performer_bundle.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\threading\queue_service.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\time\updater.cpp" />
+    <ClCompile Include="..\..\..\src\mumbi\util\string_helper.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

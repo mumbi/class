@@ -4,7 +4,7 @@ namespace mumbi {
 namespace io
 {
 	// iterator
-	stream::iterator::iterator(stream& stream, int position)
+	stream::iterator::iterator(stream& stream, size_t position)
 		: _stream(stream)
 		, _position(position)
 	{
