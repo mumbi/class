@@ -31,7 +31,7 @@ namespace io
 			using reference			= value_type&;
 
 		public:
-			iterator(stream& stream, int position);
+			iterator(stream& stream, size_t position);
 
 			iterator& operator=(const iterator& other);
 			bool operator==(const iterator& other);
@@ -44,7 +44,7 @@ namespace io
 
 		private:
 			stream&	_stream;
-			int		_position;
+			size_t	_position;
 		};
 
 	public:
@@ -52,7 +52,7 @@ namespace io
 		virtual void close() = 0;
 		virtual size_t get_length() const = 0;
 		virtual void set_length(size_t length) = 0;
-		virtual int get_position() const = 0;
+		virtual size_t get_position() const = 0;
 		virtual void set_position(size_t value) = 0;
 		virtual void flush() = 0;
 		virtual size_t peek(uint8_t* buffer, size_t offset, size_t count) const = 0;
@@ -62,7 +62,7 @@ namespace io
 		virtual uint8_t read_byte() = 0;
 		virtual size_t write(const uint8_t* buffer, size_t offset, size_t count) = 0;
 		virtual void write_byte(uint8_t byte) = 0;
-		virtual int seek(int position, seek_origin origin) = 0;
+		virtual size_t seek(int position, seek_origin origin) = 0;
 
 		iterator get_iterator(int position);
 	};
